@@ -39,10 +39,10 @@ Ring installations that match to one or more package management utilities will p
 
 You can also force ring to install packages from all matching package management utilities using the --all flag:
 
-   > sudo ring install --all json
-   json found in npm
-   json found in pip
-   json installed!
+    > sudo ring install --all json
+    json found in npm
+    json found in pip
+    json installed!
 
 
 ### Updating
