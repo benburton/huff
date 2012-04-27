@@ -1,3 +1,4 @@
+![ring](https://raw.github.com/benburton/ring/master/ring.png)
 # ring
 
 The purpose of ring is to create "one ring to rule them all" for package management. Ring was born out of frustration with having to deal with various package management utilities including:
