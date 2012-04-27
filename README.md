@@ -1,6 +1,6 @@
-![ring](https://raw.github.com/benburton/ring/master/ring.png)
+![huff](https://raw.github.com/benburton/huff/master/huff.png)
 
-The purpose of ring is to create "one ring to rule them all" for package management. Ring was born out of frustration with having to deal with various package management utilities including:
+The purpose of huff is to allow you to "huff" packages out of all your different package management utilities (ok, it's not the best name... but it's short and wasn't taken). Huff was born out of frustration with having to deal with various package management utilities including:
  * apt
  * yum
  * npm
@@ -10,23 +10,23 @@ The purpose of ring is to create "one ring to rule them all" for package managem
  * brew
  * port
 
-Ring queries each of these package management utilities, and infers which to use based on the package's presense or absense in the package repository.
+Huff queries each of these package management utilities, and infers which to use based on the package's presense or absense in the package repository.
 
-## Using ring
+## Using huff
 
 ### Installation
 
 Ring installations are done using the install target:
 
-    > sudo ring install simplejson
+    > sudo huff install simplejson
     simplejson found in pip > installing simplejson via pip
     simplejson installed!
 
 #### Installation from multiple/ambiguous sources
 
-Ring installations that match to one or more package management utilities will prompt you to decide which to use:
+Huff installations that match to one or more package management utilities will prompt you to decide which to use:
 
-    > sudo ring install json
+    > sudo huff install json
     json found in npm
     json found in pip
     which json do you want to install?
@@ -37,9 +37,9 @@ Ring installations that match to one or more package management utilities will p
     json installed!
 
 
-You can also force ring to install packages from all matching package management utilities using the --all flag:
+You can also force huff to install packages from all matching package management utilities using the --all flag:
 
-    > sudo ring install --all json
+    > sudo huff install --all json
     json found in npm
     json found in pip
     json installed!
@@ -47,9 +47,9 @@ You can also force ring to install packages from all matching package management
 
 ### Updating
 
-Ring updates using the update target. This delegates to all package management utilities and updates their sources accordingly:
+Huff updates using the update target. This delegates to all package management utilities and updates their sources accordingly:
 
-    > sudo ring update
+    > sudo huff update
     updating pip...
     updating brew...
     updating npm...
