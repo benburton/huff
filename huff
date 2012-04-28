@@ -52,35 +52,79 @@ search_pip() {
   return 0
 }
 
-install() {
+find_packages() {
+  found_in=()
   search_brew $1
   found=$?
   if [ $found -eq 1 ]
   then
     echo "$1 found in brew"
-    brew install $1
+    found_in+=("brew")
   fi
   search_pip $1
   found=$?
   if [ $found -eq 1 ]
   then
     echo "$1 found in pip"
-    pip install $1
+    found_in+=("pip")
   fi
 }
 
-if [ $# -eq 0 ]
-then
-  print_usage
-  exit
-fi
+install_from_prompt() {
+  args=("$@")
+  echo "which $3 do you want to install?"
+  for ((i=0; i < $(($#-1)); i++)) {
+    echo "  $((i+1)): ${args[$i]}"
+  }
+  echo "  $#: all"
+  read -p "? " num
+  if [ $num -ne $# ]
+  then
+    install_from ${args[$(($num-1))]} ${!#}
+  else
+    for ((i=0; i < $(($#-1)); i++)) {
+      install_from ${args[$i]} ${!#}
+    }
+  fi
+}
 
+install_from() {
+  case "$1" in 
+    "pip" )
+      pip install $2
+    ;;
+    "brew" )
+      brew install $2
+    ;;
+  esac
+}
 
-if [ $1 == "--install-local" ]
-then
-  install_local
-elif [ $1 == "install" ]
-then
-  install $2
-fi
+install() {
+  find_packages $1
 
+  # TODO use return variables and command substitution
+  if [ ${#found_in[@]} -gt 1 ]
+  then
+    install_from_prompt ${found_in[@]} $1
+  else
+    install_from ${found_in[0]} $1
+  fi
+}
+
+main() {
+  if [ $# -eq 0 ]
+  then
+    print_usage
+    exit
+  fi
+
+  if [ $1 == "--install-local" ]
+  then
+    install_local
+  elif [ $1 == "install" ]
+  then
+    install $2
+  fi
+}
+
+main $*
