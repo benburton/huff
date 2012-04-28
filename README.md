@@ -12,11 +12,15 @@ The purpose of huff is to allow you to "huff" packages out of all your different
 
 Huff queries each of these package management utilities, and infers which to use based on the package's presense or absense in the package repository.
 
-## Using huff
+## Installing Huff
 
-### Installation
+You can install huff running the following command (provided that you have wget installed):
 
     wget https://raw.github.com/benburton/huff/master/huff && chmod +x huff && ./huff --install-local
+
+## Using huff
+
+### Installing Packages
 
 Huff installations are done using the install target:
 
@@ -24,7 +28,7 @@ Huff installations are done using the install target:
     simplejson found in pip > installing simplejson via pip
     simplejson installed!
 
-#### Installation from multiple/ambiguous sources
+#### Installation packages from multiple/ambiguous sources
 
 Huff installations that match to one or more package management utilities will prompt you to decide which to use:
 

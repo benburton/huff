@@ -8,7 +8,15 @@ install_local() {
 }
 
 print_usage() {
-  echo "usage!"
+  echo "Huff is a package management utility that delegates to other package management utilities."
+  echo
+  echo "  Usage:"
+  echo "    huff -h/--help"
+  echo "    huff command [arguments...] [options...]"
+  echo
+  echo "  Examples:"
+  echo "    huff install curl"
+  echo  
 }
 
 if [ $# -eq 0 ]
