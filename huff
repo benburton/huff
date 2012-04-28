@@ -1,0 +1,25 @@
+#!/bin/sh
+
+DEFAULT_INSTALL_DIR=/usr/bin
+
+install_local() {
+  sudo cp huff $DEFAULT_INSTALL_DIR
+}
+
+print_usage() {
+  echo "usage!"
+}
+
+if [ $# -eq 0 ]
+then
+  print_usage
+  exit
+fi
+
+if [ $1 == "--install-local" ]
+then
+  install_local
+else
+  echo "not so sweet"
+fi
+
