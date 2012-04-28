@@ -2,13 +2,13 @@
 
 The purpose of huff is to allow you to "huff" packages out of all your different package management utilities (ok, it's not the best name... but it's short and wasn't taken). Huff was born out of frustration with having to deal with various package management utilities including:
  * [apt](http://wiki.debian.org/Apt) ![not supported](https://github.com/benburton/huff/raw/master/img/cross.png)
- * yum ![not supported](https://github.com/benburton/huff/raw/master/img/cross.png)
- * npm ![not supported](https://github.com/benburton/huff/raw/master/img/cross.png)
- * pip ![supported](https://github.com/benburton/huff/raw/master/img/accept.png)
- * easy_install ![not supported](https://github.com/benburton/huff/raw/master/img/cross.png)
- * gem ![not supported](https://github.com/benburton/huff/raw/master/img/cross.png)
- * brew ![supported](https://github.com/benburton/huff/raw/master/img/accept.png)
- * port ![not supported](https://github.com/benburton/huff/raw/master/img/cross.png)
+ * [yum](http://yum.baseurl.org/) ![not supported](https://github.com/benburton/huff/raw/master/img/cross.png)
+ * [npm](http://npmjs.org/) ![not supported](https://github.com/benburton/huff/raw/master/img/cross.png)
+ * [pip](http://pypi.python.org/pypi/pip) ![supported](https://github.com/benburton/huff/raw/master/img/accept.png)
+ * [easy_install](http://packages.python.org/distribute/easy_install.html) ![not supported](https://github.com/benburton/huff/raw/master/img/cross.png)
+ * [gem](http://rubygems.org/) ![not supported](https://github.com/benburton/huff/raw/master/img/cross.png)
+ * [brew](http://mxcl.github.com/homebrew/) ![supported](https://github.com/benburton/huff/raw/master/img/accept.png)
+ * [port](http://www.macports.org/) ![not supported](https://github.com/benburton/huff/raw/master/img/cross.png)
 
 Current support for each package management utility is indicated above. Huff queries each of these package management utilities, and infers which to use based on the package's presense or absense in the package repository.
 
