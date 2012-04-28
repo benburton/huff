@@ -11,7 +11,6 @@ print_usage() {
   echo "Huff is a package management utility that delegates to other package management utilities."
   echo
   echo "  Usage:"
-  echo "    huff -h/--help"
   echo "    huff command [arguments...] [options...]"
   echo
   echo "  Examples:"
@@ -20,15 +19,19 @@ print_usage() {
 }
 
 search_brew() {
-  result=$(brew search $1)
-  results=(${result// / })
-  for var in "${results[@]}"
-  do
-    if [ $1 == $var ]
-    then
-      return 1
-    fi
-  done
+  if [ $(which brew) ]
+  then
+    result=$(brew search $1)
+    results=(${result// / })
+    for var in "${results[@]}"
+    do
+      if [ $1 == $var ]
+      then
+        return 1
+      fi
+    done
+    return 0
+  fi
   return 0
 }
 
