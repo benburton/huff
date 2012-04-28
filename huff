@@ -69,6 +69,10 @@ find_packages() {
     echo "$1 found in pip"
     found_in+=("pip")
   fi
+  if [ 0 -eq ${#found_in[@]} ]
+  then
+    echo "$1 not found"
+  fi
 }
 
 install_from_prompt() {
