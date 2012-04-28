@@ -18,6 +18,7 @@ print_usage() {
   echo  
 }
 
+# TODO Clearly this can be combined with search_pip and the differences abstracted
 search_brew() {
   if [ $(which brew) ]
   then
@@ -90,12 +91,8 @@ install_from_prompt() {
 
 install_from() {
   case "$1" in 
-    "pip" )
-      pip install $2
-    ;;
-    "brew" )
-      brew install $2
-    ;;
+    "pip" ) pip install $2 ;;
+    "brew" ) brew install $2 ;;
   esac
 }
 
@@ -123,6 +120,10 @@ main() {
     install_local
   elif [ $1 == "install" ]
   then
+    if [ $2 == "--all" ]
+    then
+      echo "awesome!"
+    fi
     install $2
   fi
 }
