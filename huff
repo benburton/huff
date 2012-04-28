@@ -97,6 +97,8 @@ install_from() {
 }
 
 install() {
+  echo $2
+
   find_packages $1
 
   # TODO use return variables and command substitution
@@ -114,18 +116,18 @@ main() {
     print_usage
     exit
   fi
-
-  if [ $1 == "--install-local" ]
-  then
-    install_local
-  elif [ $1 == "install" ]
-  then
-    if [ $2 == "--all" ]
-    then
-      echo "awesome!"
-    fi
-    install $2
-  fi
+  
+  case "$1" in
+    "--install-local" ) install_local ;;
+    "install" )
+       if [ $2 == "--all" ]
+       then
+         install $2 all
+       else
+         install $2
+       fi
+    ;;
+  esac
 }
 
 main $*
