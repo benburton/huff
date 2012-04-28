@@ -1,8 +1,8 @@
 ![huff](https://raw.github.com/benburton/huff/master/img/huff.png)
 
 The purpose of huff is to allow you to "huff" packages out of all your different package management utilities (ok, it's not the best name... but it's short and wasn't taken). Huff was born out of frustration with having to deal with various package management utilities including:
- * ![not supported](https://raw.github.com/benburton/huff/master/img/cross.png) apt
- * yum
+ * ![not supported](https://github.com/benburton/huff/raw/master/img/cross.png) apt
+ * ![not supported](https://github.com/benburton/huff/raw/master/img/cross.png) yum
  * npm
  * pip
  * easy_install
