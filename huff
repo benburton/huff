@@ -97,8 +97,6 @@ install_from() {
 }
 
 install() {
-  echo $2
-
   find_packages $1
 
   # TODO use return variables and command substitution
