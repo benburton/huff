@@ -10,7 +10,7 @@ The purpose of huff is to allow you to "huff" packages out of all your different
  * brew ![supported](https://github.com/benburton/huff/raw/master/img/accept.png)
  * port ![not supported](https://github.com/benburton/huff/raw/master/img/cross.png)
 
-Huff queries each of these package management utilities, and infers which to use based on the package's presense or absense in the package repository.
+Current support for each package management utility is indicated above. Huff queries each of these package management utilities, and infers which to use based on the package's presense or absense in the package repository.
 
 ## Installing Huff
 
