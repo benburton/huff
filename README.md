@@ -16,7 +16,7 @@ Huff queries each of these package management utilities, and infers which to use
 
 ### Installation
 
-    wget https://raw.github.com/benburton/huff/master/huff && ./huff --install-local
+    wget https://raw.github.com/benburton/huff/master/huff && chmod +x huff && ./huff --install-local
 
 Huff installations are done using the install target:
 
