@@ -53,6 +53,23 @@ search_pip() {
   return 0
 }
 
+search_npm() {
+  if [ $(which npm) ]
+  then
+    result=$(npm search jquery | awk '{ print $1 }')
+    results=(${result// / })
+    for var in "${results[@]}"
+    do
+      if [ $1 == $var ]
+      then
+        return 1
+      fi
+    done
+    return 0
+  fi
+  return 0
+}
+
 find_packages() {
   found_in=()
   search_brew $1
@@ -69,6 +86,14 @@ find_packages() {
     echo "$1 found in pip"
     found_in+=("pip")
   fi
+  search_npm $1
+  found=$?
+  if [ $found -eq 1 ]
+  then
+    echo "$1 found in npm"
+    found_in+=("npm")
+  fi
+
   if [ 0 -eq ${#found_in[@]} ]
   then
     echo "$1 not found"
@@ -97,6 +122,7 @@ install_from() {
   case "$1" in 
     "pip" ) pip install $2 ;;
     "brew" ) brew install $2 ;;
+    "npm" ) npm install $2 ;;
   esac
 }
 
