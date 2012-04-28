@@ -35,13 +35,37 @@ search_brew() {
   return 0
 }
 
+search_pip() {
+  if [ $(which pip) ]
+  then
+    result=$(pip search $1 | awk '{ print $1 }')
+    results=($result// / })
+    for var in "${results[@]}"
+    do
+      if [ $1 == $var ]
+      then
+        return 1
+      fi
+    done
+    return 0
+  fi
+  return 0
+}
+
 install() {
-  echo "searching brew for $1"
   search_brew $1
   found=$?
   if [ $found -eq 1 ]
   then
+    echo "$1 found in brew"
     brew install $1
+  fi
+  search_pip $1
+  found=$?
+  if [ $found -eq 1 ]
+  then
+    echo "$1 found in pip"
+    pip install $1
   fi
 }
 
