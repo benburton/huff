@@ -19,16 +19,41 @@ print_usage() {
   echo  
 }
 
+search_brew() {
+  result=$(brew search $1)
+  results=(${result// / })
+  for var in "${results[@]}"
+  do
+    if [ $1 == $var ]
+    then
+      return 1
+    fi
+  done
+  return 0
+}
+
+install() {
+  echo "searching brew for $1"
+  search_brew $1
+  found=$?
+  if [ $found -eq 1 ]
+  then
+    brew install $1
+  fi
+}
+
 if [ $# -eq 0 ]
 then
   print_usage
   exit
 fi
 
+
 if [ $1 == "--install-local" ]
 then
   install_local
-else
-  echo "not so sweet"
+elif [ $1 == "install" ]
+then
+  install $2
 fi
 
