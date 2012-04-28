@@ -16,7 +16,9 @@ Huff queries each of these package management utilities, and infers which to use
 
 ### Installation
 
-Ring installations are done using the install target:
+    wget https://raw.github.com/benburton/huff/master/huff && ./huff --install-local
+
+Huff installations are done using the install target:
 
     > sudo huff install simplejson
     simplejson found in pip > installing simplejson via pip

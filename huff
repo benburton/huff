@@ -3,7 +3,8 @@
 DEFAULT_INSTALL_DIR=/usr/bin
 
 install_local() {
-  sudo cp huff $DEFAULT_INSTALL_DIR
+  sudo mv huff $DEFAULT_INSTALL_DIR
+  echo "huff successfully installed!"
 }
 
 print_usage() {
