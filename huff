@@ -79,11 +79,14 @@ install_from_prompt() {
 }
 
 install_from() {
-  case "$1" in 
-    "pip" ) pip install $2 ;;
-    "brew" ) brew install $2 ;;
-    "npm" ) npm install $2 ;;
-  esac
+  if [ $(which $1) ]
+  then
+    case "$1" in 
+      "pip" ) pip install $2 ;;
+      "brew" ) brew install $2 ;;
+      "npm" ) npm install $2 ;;
+    esac
+  fi
 }
 
 install() {
