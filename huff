@@ -14,7 +14,8 @@ print_usage() {
   echo "    huff command [arguments...] [options...]"
   echo
   echo "  Examples:"
-  echo "    huff install curl"
+  echo "    huff install curl        # install curl"
+  echo "    huff update              # update package manager sources"
   echo  
 }
 
@@ -101,6 +102,19 @@ install() {
   fi
 }
 
+update() {
+  for manager in "brew"
+  do
+    if [ $(which $manager) ]
+    then
+      case "$manager" in
+        "brew" ) brew update ;;
+        "npm" ) npm update ;; 
+      esac
+    fi
+  done
+}
+
 main() {
   if [ $# -eq 0 ]
   then
@@ -117,6 +131,9 @@ main() {
        else
          install $2
        fi
+    ;;
+    "update" )
+      update
     ;;
   esac
 }
