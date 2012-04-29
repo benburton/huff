@@ -56,7 +56,7 @@ search_pip() {
 search_npm() {
   if [ $(which npm) ]
   then
-    result=$(npm search jquery | awk '{ print $1 }')
+    result=$(npm search $1 | awk '{ print $1 }')
     results=(${result// / })
     for var in "${results[@]}"
     do
