@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 DEFAULT_INSTALL_DIR=/usr/bin
 
