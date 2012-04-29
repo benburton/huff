@@ -45,7 +45,7 @@ search() {
 find_packages() {
   found_in=()
   
-  for manager in "apt" "brew" "pip" "npm"
+  for manager in "apt-get" "brew" "pip" "npm"
   do
     search $manager $1
     found=$?
