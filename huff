@@ -21,9 +21,10 @@ print_usage() {
 
 # search <package util> <package>
 search() {
-  if [ $(which $1) ]
+  if [ $(which $1) ] || [[ $1 == "apt" && $(which apt-cache) ]]
   then
     case "$1" in
+      "apt" ) result=$(apt-cache search $2 | awk '{ print $1 }') ;;
       "brew" ) result=$(brew search $2) ;;
       "pip" ) result=$(pip search $2 | awk '{ print $1 }') ;;
       "npm" ) result=$(npm search $2 | awk '{ print $1 }') ;;
@@ -44,7 +45,7 @@ search() {
 find_packages() {
   found_in=()
   
-  for manager in "brew" "pip" "npm"
+  for manager in "apt" "brew" "pip" "npm"
   do
     search $manager $1
     found=$?
@@ -80,9 +81,10 @@ install_from_prompt() {
 }
 
 install_from() {
-  if [ $(which $1) ]
+  if [ $(which $1) ] || [[ $1 == "apt" && $(which apt-get) ]]
   then
     case "$1" in 
+      "apt" ) apt-get install $2 ;;
       "pip" ) pip install $2 ;;
       "brew" ) brew install $2 ;;
       "npm" ) npm install $2 ;;
@@ -103,11 +105,12 @@ install() {
 }
 
 update() {
-  for manager in "brew" "npm"
+  for manager in "apt" "brew" "npm"
   do
     if [ $(which $manager) ]
     then
       case "$manager" in
+        "apt" ) apt-cache update ;;
         "brew" ) brew update ;;
         "npm" ) npm update ;; 
       esac
