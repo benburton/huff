@@ -42,27 +42,17 @@ search() {
 
 find_packages() {
   found_in=()
-  search brew $1
-  found=$?
-  if [ $found -eq 1 ]
-  then
-    echo "$1 found in brew"
-    found_in+=("brew")
-  fi
-  search pip $1
-  found=$?
-  if [ $found -eq 1 ]
-  then
-    echo "$1 found in pip"
-    found_in+=("pip")
-  fi
-  search npm $1
-  found=$?
-  if [ $found -eq 1 ]
-  then
-    echo "$1 found in npm"
-    found_in+=("npm")
-  fi
+  
+  for manager in "brew" "pip" "npm"
+  do
+    search $manager $1
+    found=$?
+    if [ $found -eq 1 ]
+    then
+      echo "$1 found in $manager"
+      found_in+=($manager)
+    fi
+  done
 
   if [ 0 -eq ${#found_in[@]} ]
   then
