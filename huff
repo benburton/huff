@@ -18,49 +18,20 @@ print_usage() {
   echo  
 }
 
-# TODO Clearly this can be combined with search_pip and the differences abstracted
-search_brew() {
-  if [ $(which brew) ]
+# search <package util> <package>
+search() {
+  if [ $(which $1) ]
   then
-    result=$(brew search $1)
+    case "$1" in
+      "brew" ) result=$(brew search $2) ;;
+      "pip" ) result=$(pip search $2 | awk '{ print $1 }') ;;
+      "npm" ) result=$(npm search $2 | awk '{ print $1 }') ;;
+    esac
+    echo $result
     results=(${result// / })
     for var in "${results[@]}"
     do
-      if [ $1 == $var ]
-      then
-        return 1
-      fi
-    done
-    return 0
-  fi
-  return 0
-}
-
-search_pip() {
-  if [ $(which pip) ]
-  then
-    result=$(pip search $1 | awk '{ print $1 }')
-    results=($result// / })
-    for var in "${results[@]}"
-    do
-      if [ $1 == $var ]
-      then
-        return 1
-      fi
-    done
-    return 0
-  fi
-  return 0
-}
-
-search_npm() {
-  if [ $(which npm) ]
-  then
-    result=$(npm search jquery | awk '{ print $1 }')
-    results=(${result// / })
-    for var in "${results[@]}"
-    do
-      if [ $1 == $var ]
+      if [ $2 == $var ]
       then
         return 1
       fi
@@ -72,21 +43,21 @@ search_npm() {
 
 find_packages() {
   found_in=()
-  search_brew $1
+  search brew $1
   found=$?
   if [ $found -eq 1 ]
   then
     echo "$1 found in brew"
     found_in+=("brew")
   fi
-  search_pip $1
+  search pip $1
   found=$?
   if [ $found -eq 1 ]
   then
     echo "$1 found in pip"
     found_in+=("pip")
   fi
-  search_npm $1
+  search npm $1
   found=$?
   if [ $found -eq 1 ]
   then
