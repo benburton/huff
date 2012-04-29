@@ -103,7 +103,7 @@ install() {
 }
 
 update() {
-  for manager in "brew"
+  for manager in "brew" "npm"
   do
     if [ $(which $manager) ]
     then
